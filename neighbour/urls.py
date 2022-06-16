@@ -18,9 +18,10 @@ from django.urls import re_path,include
 from django.contrib.auth import views as view
 
 urlpatterns = [
-    re_path('admin/', admin.site.urls),
+    re_path(r'^admin/', admin.site.urls),
     re_path(r'^accounts/', include('django_registration.backends.one_step.urls'), name='register'),
     re_path(r'^accounts/', include('django.contrib.auth.urls')),
     re_path(r'^accounts/login', view.LoginView.as_view(template_name='registration/login.html'), name ='login'), 
     re_path(r'^logout/$', view.LogoutView.as_view(next_page='login')), 
+    re_path(r'',include('app.urls')),
 ]
