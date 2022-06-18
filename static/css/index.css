@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  background-color: #ff004c;
+  position: absolute;
+  /* width: 150px; */
+  min-height: 100vh;
+
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 1rem 0 1rem 1rem;
+  overflow: hidden;
+  border-right: 3px solid #1f2034;
+  transition: width 0.2s linear;
+}
+
+.header .nav-list {
+  list-style: none;
+}
+
+.header .nav-list .nav-link {
+  /* display: inline-block; */
+  text-decoration: none;
+  padding: 5px 15px 5px 5px;
+  border-radius: 10px 0 0 10px;
+
+  width: 100%;
+  transition: all 0.2s linear;
+}
+.header .nav-list .nav-item:hover .nav-link,
+.header .nav-list .nav-item.active .nav-link {
+  background-color: #1f2034;
+}
+
+.header .nav-list .nav-link {
+  display: flex;
+  align-items: center;
+}
+.header .nav-list .nav-link > * {
+  color: #fff;
+}
+.header .nav-list .nav-link .icon {
+  width: 35px;
+  text-align: center;
+  line-height: 35px;
+  height: 35px;
+  margin-right: 7px;
+  font-size: 18px;
+}
+.header .nav-list .nav-link .text {
+  display: inline-block;
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  overflow: hidden;
+  transition: width 0.2s linear;
+  width: 90px;
+  white-space: nowrap;
+}
+.header.optimize .nav-list .nav-link .text {
+  width: 0px;
+}
+
+.header .btn-navig {
+  color: #fff;
+  height: 40px;
+  width: 40px;
+  background-color: #1f2034;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 40px;
+  text-decoration: none;
+}
+
+.header .btn-navig .open,
+.header.optimize .btn-navig .close {
+  display: none;
+}
+.header.optimize .btn-navig .open {
+  display: inline-block;
+}

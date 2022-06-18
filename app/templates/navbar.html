@@ -1,0 +1,54 @@
+<header id="header" class="header">
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa fa-home icon"></i>
+            <span class="text">Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa fa-address-book icon"></i>
+            <span class="text">Contacts</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa fa-comments icon"></i>
+            <span class="text">Chats</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa fa-user icon"></i>
+            <span class="text">User</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa fa-cog icon"></i>
+            <span class="text">Settings</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa fa-sign-out icon"></i>
+            <span class="text">Sign out</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <a id="btn-navig" class="btn-navig" href="#">
+      <i class="fa fa-bars open icon"></i>
+      <i class="fa fa-times close icon"></i>
+    </a>
+  </header>
+<script>
+const headerElm = document.getElementById("header");
+const btnNavig = document.getElementById("btn-navig");
+
+btnNavig.addEventListener("click", function () {
+  headerElm.classList.toggle("optimize");
+});
+</script>

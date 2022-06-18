@@ -9,14 +9,15 @@
   {%endblock%}
   {% load static %}
   <!-- CSS only -->
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
 </head>
 <body>
-    {% include "navbar.html" %}
-
+   
     {% block content %}{%endblock%}
+    {% include "navbar.html" %}
 
     {% block scripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
