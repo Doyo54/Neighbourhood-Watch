@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Neighbourhood,Profile
-from .forms import NeighbourHoodForm
+from .forms import NeighbourHoodForm,UpdateUserProfileForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 @login_required(login_url='/accounts/login')
@@ -42,3 +43,21 @@ def single_hood(request,id):
         'hood': hood,
     }
     return render(request, 'single_hood.html', params)
+
+def profile(request, username):
+
+    return render(request, 'user_profile.html')
+
+def update_profile(request, username):
+    user = User.objects.get(username=username)
+    profile= Profile.objects.get_or_create(user=request.user)
+    images = request.user.profile.posts.all()
+    if request.method == 'POST':
+        profile= Profile.objects.get_or_create(user=request.user)
+        prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if  prof_form.is_valid():
+            prof_form.save()
+            return redirect('profile',user.username)
+    else:
+        prof_form = UpdateUserProfileForm(instance=request.user.profile)
+    return render(request, 'profile.html', {'prof_form': prof_form,'images': images,})
