@@ -17,7 +17,7 @@ def create_hood(request):
             hood = form.save(commit=False)
             hood.admin = request.user.profile
             hood.save()
-            return redirect('ndex')
+            return redirect('index')
     else:
         form = NeighbourHoodForm()
     return render(request, 'newhood.html', {'form': form})
