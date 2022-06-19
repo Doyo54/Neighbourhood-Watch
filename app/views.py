@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Neighbourhood
+from .models import Neighbourhood,Profile
 from .forms import NeighbourHoodForm
 
 # Create your views here.
@@ -12,6 +12,7 @@ def index(request):
 
 def create_hood(request):
     if request.method == 'POST':
+        profile= Profile.objects.get_or_create(user=request.user)
         form = NeighbourHoodForm(request.POST, request.FILES)
         if form.is_valid():
             hood = form.save(commit=False)
@@ -26,11 +27,18 @@ def join_hood(request, id):
     neighbourhood = get_object_or_404(Neighbourhood, id=id)
     request.user.profile.neighbourhood = neighbourhood
     request.user.profile.save()
-    return redirect('hood')
+    return redirect('index')
 
 
 def leave_hood(request, id):
     hood = get_object_or_404(Neighbourhood, id=id)
     request.user.profile.neighbourhood = None
     request.user.profile.save()
-    return redirect('hood')
+    return redirect('index')
+
+def single_hood(request,id):
+    hood = Neighbourhood.objects.get(id=id)
+    params = {
+        'hood': hood,
+    }
+    return render(request, 'single_hood.html', params)

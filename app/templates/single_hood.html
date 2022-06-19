@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container" style="margin-top:-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-5"> 
+                        <img src="{{ hood.logo.url }}" width="400" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h5 class="card-title tt">{{ hood.name }} ({{hood.location}})
+                            </h5>
+                            <h6 class="card-text">
+                                <span><strong>{{hood.occupants}}</strong> Members{{hood.occupants.count|pluralize}}</span>
+                            </h6>
+                            <p class="card-text">{{hood.description}}</p>
+                            <p class="card-text"><span class="text-info">Police Tell</span>
+                                &nbsp;<strong>{{hood.police_number}}</strong> |
+                                <span class="text-info">Hospital Tell</span> <strong>{{hood.health_tell}}</strong></p>
+                            <p class="card-text">Administrator: <small class="text-muted">
+                                {{ hood.user.user.username }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

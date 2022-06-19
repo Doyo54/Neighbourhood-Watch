@@ -31,7 +31,7 @@ class Profile(models.Model):
 class Neighbourhood(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=60)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='hood')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='hood', default='1')
     logo = models.ImageField(upload_to='images/',default='default.png')
     description = models.TextField()
     health_tell = models.IntegerField(null=True, blank=True)
