@@ -22,12 +22,31 @@
                                 <span class="text-info">Hospital Tell</span> <strong>{{hood.health_tell}}</strong></p>
                             <p class="card-text">Administrator: <small class="text-muted">
                                 {{ hood.user.user.username }}</small></p>
+                                <a href="{% url 'add-post' hood.id %}">
+                                    <h2>Add Post</h2>
+                                </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
+        <h5 class="D-block mx-auto tt">Posts</h5>
+                    {% for post in posts %}
+                    <div class="col-md-4" style="margin-top: 5%;">
+                        <div class="card mb-4 hpost">
+                            <div class="card-body">
+                                <h5 class="card-title">{{post.title}}</h5>
+                                <p class="card-text">" {{post.post}} "
+                                </p>
+                                <p class="card-text">By: <small class="text-white">
+                                    {{ post.user.user.username|title }}</small> <small style="float:right">{{post.date|date}}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                
     </div>
 </div>
 {% endblock %}

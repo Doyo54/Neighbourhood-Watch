@@ -12,7 +12,7 @@ class UpdateUserProfileForm(forms.ModelForm):
         model = Profile
         fields = ['name', 'profile_picture', 'location', 'bio','neighbourhood']
 
-class UploadProjectForm(forms.ModelForm):
+class UploadPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'post']

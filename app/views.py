@@ -1,7 +1,7 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Neighbourhood,Profile
-from .forms import NeighbourHoodForm,UpdateUserProfileForm
+from .models import Neighbourhood,Profile,Post
+from .forms import NeighbourHoodForm,UpdateUserProfileForm,UploadPostForm
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -39,8 +39,10 @@ def leave_hood(request, id):
 
 def single_hood(request,id):
     hood = Neighbourhood.objects.get(id=id)
+    posts = Post.objects.filter(hood=hood)
     params = {
         'hood': hood,
+        'posts':posts
     }
     return render(request, 'single_hood.html', params)
 
@@ -61,3 +63,18 @@ def update_profile(request, id):
     else:
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
     return render(request, 'profile.html', {'prof_form': prof_form,})
+
+def hood_post(request, id):
+    hood = Neighbourhood.objects.get(id=id)
+    if request.method == 'POST':
+        profile= Profile.objects.get_or_create(user=request.user)
+        form =UploadPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.hood = hood
+            post.user = request.user.profile
+            post.save()
+            return redirect('single-hood', hood.id)
+    else:
+        form = UploadPostForm()
+    return render(request, 'hood_post.html', {'form': form})
