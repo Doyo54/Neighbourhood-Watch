@@ -54,3 +54,10 @@ class Neighbourhood(models.Model):
     @classmethod
     def update_occupants(cls, occupants, value):
         cls.objects.filter(occupants=occupants).update(occupants=value)
+    
+class Post(models.Model):
+    title = models.CharField(max_length=200, null=True)
+    post = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='post_owner')
+    hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='hood_post')

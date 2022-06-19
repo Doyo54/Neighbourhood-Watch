@@ -44,20 +44,20 @@ def single_hood(request,id):
     }
     return render(request, 'single_hood.html', params)
 
-def profile(request, username):
-
+def profile(request, id):
+    profile= Profile.objects.get_or_create(user=request.user)
+    user_prof = Profile.objects.get(id=id)
     return render(request, 'user_profile.html')
 
-def update_profile(request, username):
-    user = User.objects.get(username=username)
+def update_profile(request, id):
+    user = User.objects.get(id=id)
     profile= Profile.objects.get_or_create(user=request.user)
-    images = request.user.profile.posts.all()
     if request.method == 'POST':
         profile= Profile.objects.get_or_create(user=request.user)
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if  prof_form.is_valid():
             prof_form.save()
-            return redirect('profile',user.username)
+            return redirect('profile',user.id)
     else:
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
-    return render(request, 'profile.html', {'prof_form': prof_form,'images': images,})
+    return render(request, 'profile.html', {'prof_form': prof_form,})
