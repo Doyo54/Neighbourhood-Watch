@@ -1,4 +1,4 @@
-{% extends "app:base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
@@ -19,9 +19,15 @@
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ profile_details.user.first_name }} {{ profile_details.user.last_name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">Businesses</li>
+            <div class="box ml-auto">
+                 <form name="search" method=POST action="{% url 'business:search' %}">
+                     {% csrf_token %}
+                     <input type="search" class="input" aria-label="Search" name="search" 
+                     onmouseout="this.value = ''; this.blur();">
+                 </form>
+                    <a href="" type="submit"><i class="fa fa-search" style="color: #ff004c;"></i></a> 
+             </div> 
             </ol>
         </nav>
         <!-- /Breadcrumb -->
@@ -79,7 +85,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M20 6h-3V4c0-1.103-.897-2-2-2H9c-1.103 0-2 .897-2 2v2H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V8c0-1.103-.897-2-2-2zm-5-2v2H9V4h6zM4 8h16v4h-3v-2h-2v2H9v-2H7v2H4V8zm0 11v-5h3v2h2v-2h6v2h2v-2h3.001v5H4z"></path></svg>
                     <br>
                     <h4 class="text-dark py-3">No Associated Businesses Found</h4>
-                    <a href="{% url 'AddBusiness' user.username %}" name="AddBusiness">
+                    <a href="{% url 'business:addbusiness' user.username %}" name="AddBusiness">
                         <button type="submit" class="btn btn-primary btn-md" style="margin-right: 20px;"><i class="fa-solid fa-plus"></i> Add A Business</button>
                     </a>
                     <br>
@@ -92,7 +98,7 @@
         <footer class="page-footer">
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3 text-dark">
-                © Copyright 2022 Nyumba Kumi
+                © Copyright 2022 Neighbourhood-Watch
             </div>
             <!-- Copyright -->
         </footer>
