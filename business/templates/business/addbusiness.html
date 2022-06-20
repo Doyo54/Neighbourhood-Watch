@@ -1,4 +1,4 @@
-{% extends "app:base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
@@ -19,14 +19,13 @@
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0)">Business</a></li>
             <li class="breadcrumb-item active" aria-current="page">Add</li>
             </ol>
         </nav>
         <!-- /Breadcrumb -->
 
-        <form method="POST" enctype="multipart/form-data" style="margin-top: 50px;">
+        <form method="POST" enctype="multipart/form-data"  style="margin-top: 50px;" action="">
             {% csrf_token %}
             <div class="bio layout-spacing ">
                 <div class="widget-content widget-content-area">
@@ -72,7 +71,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <a href="{% url 'MyProfile' user.username %}" name='MyProfile'>
+                                            <a href="{% url 'profile' user.username %}" name='MyProfile'>
                                                 <button type="button" class="btn btn-dark btn-lg btn-block">Cancel</button>
                                             </a>
                                         </div>
@@ -90,7 +89,7 @@
         <footer class="page-footer">
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3 text-dark">
-                © Copyright 2022 Nyumba Kumi
+                © Copyright 2022 Neighbourhood-Watch
             </div>
             <!-- Copyright -->
         </footer>
