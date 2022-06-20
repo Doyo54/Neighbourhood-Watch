@@ -4,14 +4,12 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
   background-color: black;
 }
 
 .header {
   background-color: #ff004c;
-  position: absolute;
-  /* width: 150px; */
+
   min-height: 100vh;
 
   display: inline-flex;
@@ -19,9 +17,9 @@ body {
   justify-content: space-between;
 
   padding: 1rem 0 1rem 1rem;
-  overflow: hidden;
   border-right: 3px solid #1f2034;
   transition: width 0.2s linear;
+  
 }
 
 .header .nav-list {
@@ -50,8 +48,6 @@ body {
   color: #fff;
 }
 .header .nav-list .nav-link .icon {
-  width: 35px;
-  text-align: center;
   line-height: 35px;
   height: 35px;
   margin-right: 7px;
@@ -63,7 +59,7 @@ body {
   font-weight: 700;
   overflow: hidden;
   transition: width 0.2s linear;
-  width: 90px;
+  font-size: large;
   white-space: nowrap;
 }
 .header.optimize .nav-list .nav-link .text {
@@ -82,9 +78,45 @@ body {
 }
 
 .header .btn-navig .open,
-.header.optimize .btn-navig .close {
+.header .btn-navig .close {
   display: none;
 }
 .header.optimize .btn-navig .open {
   display: inline-block;
+}
+.box{
+  position: relative;
+}
+
+.input {
+  padding: 10px;
+  width: 80px;
+  height: 80px;
+  background: none;
+  border: 4px solid #ff004c;
+  border-radius: 50px;
+  box-sizing: border-box;
+  font-family: Comic Sans MS;
+  font-size: 26px;
+  color: #ff004c;
+  outline: none;
+  transition: .5s;
+}
+.box:hover input{
+  width: 350px;
+  background: #414142;
+  border-radius: 10px;
+}
+.box i{
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translate(-50%,-50%);
+  font-size: 26px;
+  color: #ffd52d;
+  transition: .2s;
+}
+.box:hover i{
+  opacity: 0;
+  z-index: -1;
 }

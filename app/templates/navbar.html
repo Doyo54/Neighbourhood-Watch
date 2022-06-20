@@ -1,4 +1,4 @@
-<header id="header" style="position: fixed; top:0%; width: fit-content;" class="header">
+<header id="header" style="position: fixed; top:0%;" class="header">
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-item">
@@ -40,17 +40,33 @@
             <span class="text">Update Profile</span>
           </a>
         </li>
+        {% if user.profile.neighbourhood %}
+        <li class="nav-item">
+          <a href="{% url 'business:addbusiness' user.username %}" class="nav-link">
+            <i class="fa fa-briefcase icon"></i>
+            <span class="text">Add Business</span>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="logout" class="nav-link">
             <i class="fa fa-sign-out icon"></i>
             <span class="text">Sign out</span>
           </a>
         </li>
+        {% else %}
+        <li class="nav-item">
+          <a href="logout" class="nav-link">
+            <i class="fa fa-sign-out icon"></i>
+            <span class="text">Sign out</span>
+          </a>
+        </li>
+      {% endif %}
+     
       </ul>
     </nav>
     <a id="btn-navig" class="btn-navig" href="#">
       <i class="fa fa-bars open icon"></i>
-      <i class="fa fa-times close icon"></i>
+      <i class="fa fa-close close icon"></i>
     </a>
     </header>
 <script>

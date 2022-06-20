@@ -61,3 +61,39 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='post_owner')
     hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='hood_post')
+
+
+class Business(models.Model):
+    name = models.CharField(max_length=150, verbose_name='Business Name', null=True, blank=True)
+    description = models.TextField(blank=True, verbose_name='Description')
+    email = models.CharField(max_length=150, verbose_name='Business Email Address', null=True, blank=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, verbose_name='NeighbourHood', null=True)
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Business Owner')
+    date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Created')
+    date_updated = models.DateTimeField(auto_now=True, verbose_name='Date Updated')
+
+    def __str__(self):
+        return str(self.name)
+
+    def get_businesses(self):
+        businesses = Business.objects.all()
+        return businesses
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    def find_business(self,business_id):
+        business = Business.objects.filter(self = business_id)
+        return business
+
+    def update_business(self):
+        
+        self.update()
+    
+    class Meta:
+        verbose_name_plural = 'Businesses'
+
+

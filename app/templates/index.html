@@ -2,7 +2,9 @@
 {% block content %}
 <div class="container">
     <div class="row">
+       
         {% for hood in all_hoods %}
+        <div class="col-md-1"></div>
         <div class="col-md-5">
             <div class="card mb-4" style="min-height:340px; margin-top:3% ;">
                 <img src="{{ hood.logo.url }}" width="400" class="card-img-top" alt="{{ hood.name }}">
