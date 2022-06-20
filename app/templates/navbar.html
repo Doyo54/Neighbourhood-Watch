@@ -1,38 +1,47 @@
-<header id="header" class="header">
+<header id="header" style="position: fixed; top:0%; width: fit-content;" class="header">
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="/" class="nav-link">
             <i class="fa fa-home icon"></i>
             <span class="text">Home</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'new-hood' %}" class="nav-link">
             <i class="fa fa-address-book icon"></i>
-            <span class="text">Contacts</span>
+            <span class="text"> Add-Neighbourhood</span>
           </a>
         </li>
+        
+        {% if user.profile.neighbourhood %}
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="fa fa-comments icon"></i>
-            <span class="text">Chats</span>
-          </a>
+            <a href="{% url 'single-hood' user.profile.neighbourhood.id %}" class="nav-link">
+                <i class="fa fa-paper-plane"></i> <span class="text">&nbsp;
+                &nbsp;{{user.profile.neighbourhood.name}}</span>
+            </a>
         </li>
+        {% else %}
         <li class="nav-item">
-          <a href="#" class="nav-link">
+            <a href="" class="nav-link"> <span class="text">&nbsp;
+                No Hood Yet</span>
+            </a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a href="{% url 'profile' user.id  %}" class="nav-link">
             <i class="fa fa-user icon"></i>
-            <span class="text">User</span>
+            <span class="text">Profile</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'update_profile' user.id  %}" class="nav-link">
             <i class="fa fa-cog icon"></i>
-            <span class="text">Settings</span>
+            <span class="text">Update Profile</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="logout" class="nav-link">
             <i class="fa fa-sign-out icon"></i>
             <span class="text">Sign out</span>
           </a>
@@ -80,7 +89,7 @@
       <i class="fa fa-bars open icon"></i>
       <i class="fa fa-times close icon"></i>
     </a>
-  </header>
+    </header>
 <script>
 const headerElm = document.getElementById("header");
 const btnNavig = document.getElementById("btn-navig");
