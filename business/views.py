@@ -2,9 +2,9 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import AddBussinessForm, AddPostForm
-from .models import Business, Membership
-from app.models import Neighbourhood, Profile, Post
+from .forms import AddBussinessForm
+from .models import Business
+from app.models import Neighbourhood, Profile
 
 # Create your views here.
 @login_required(login_url='Login')

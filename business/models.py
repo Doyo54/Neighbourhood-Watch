@@ -72,7 +72,7 @@ class Business(models.Model):
     description = models.TextField(blank=True, verbose_name='Description')
     email = models.CharField(max_length=150, verbose_name='Business Email Address', null=True, blank=True)
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, verbose_name='NeighbourHood', null=True)
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Business Owner')
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Business Owner', null=True)
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Created')
     date_updated = models.DateTimeField(auto_now=True, verbose_name='Date Updated')
 
@@ -103,7 +103,7 @@ class Business(models.Model):
 
 class Membership(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='User')
-    neighbourhood_membership = models.ForeignKey(Neighbourhood, related_name='neighbourhood_member', on_delete=models.CASCADE, verbose_name='NeighbourHood')
+    neighbourhood_membership = models.ForeignKey(Neighbourhood, related_name='neighbourhood_member', on_delete=models.CASCADE, verbose_name='NeighbourHood',)
 
     def __str__(self):
         return str(self.user.username + '-' + self.neighbourhood_membership.title)
