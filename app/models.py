@@ -42,10 +42,14 @@ class Neighbourhood(models.Model):
         return f'{self.name} hood'
 
     def create_neighborhood(self):
-        self.save()
+        self.name
 
     def delete_neighborhood(self):
         self.delete()
+    
+    def get_hood(self):
+        hood = Neighbourhood.objects.all()
+        return hood
 
     @classmethod
     def find_neighborhood(cls, neighborhood_id):
@@ -80,7 +84,7 @@ class Business(models.Model):
         return businesses
 
     def create_business(self):
-        self.save()
+        self.name
 
     def delete_business(self):
         self.delete()
